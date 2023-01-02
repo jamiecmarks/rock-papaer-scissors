@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock paper sciccors</title>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <script>
+            
+            const choices = ["Rock", "Paper", "Scissors"];
+            let playerScore = 0;
+            let compScore = 0;
+
+          
+
+            function getComputerChoice () {
+                return choices[Math.floor(Math.random() * 3)]
+            }
+
+            function play (playerSelection, computerSelection) {
+                if (playerSelection.toLowerCase() == computerSelection.toLowerCase()) {
+                    return `\nBoth players played ${computerSelection}, draw!\n`
+                } else if (playerSelection.toLowerCase() == "paper" && computerSelection == "Rock"){
+                    return winCondition(playerSelection, computerSelection)
+                } else if (playerSelection.toLowerCase() == "rock" && computerSelection == "Scissors") {
+                    return winCondition (playerSelection, computerSelection)
+                } else if (playerSelection.toLowerCase() == "scissors" && computerSelection == "Paper") {
+                    return winCondition (playerSelection, computerSelection)
+                } else {
+                    return loseCondition (playerSelection, computerSelection)
+                }
+
+
+
+            }
+
+            function winCondition (playerSelection, computerSelection) {
+                playerScore++
+                return `You win! ${playerSelection.substr(0,1).toUpperCase() + playerSelection.substr(1).toLowerCase()} beats ${computerSelection}`
+            }
+            
+
+            function loseCondition (playerSelection, computerSelection) {
+                compScore++
+                return `You lose! ${computerSelection} beats ${playerSelection.substr(0,1).toUpperCase() + playerSelection.substr(1).toLowerCase()}`
+            }
+            
+            function game () {
+
+                for (i = 0; i < 5; i++) {
+                    let computerSelection = getComputerChoice();
+                    let playerSelection = prompt('Rock, Paper or Scissors?');
+                    console.log(play(playerSelection, computerSelection));
+                }
+
+                if (playerScore > compScore) {
+                    console.log("Congrats you won!")
+                } else if (compScore > playerScore){
+                    console.log("Whoops! You lost")
+                } else {
+                    console.log("Draw!")
+                }
+            }
+
+            game()
+        </script>
+    </body>
+</html>
